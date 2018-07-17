@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+		<link rel="stylesheet" href="css/css.css" />
+		<link rel="stylesheet" href="css/slicebar.css" />
+		<title>开始游戏-参数设置</title>
+	</head>
+	<body>
+		<div id="top">
+			<i class="iconfont" onclick="window.history.back(-1);">&#xe631;</i>
+			<span>参数设置</span>
+			<i class="iconfont iconright">&#xe60b;</i>
+		</div>
+		<div id="mycontent" style="padding: 10px;">
+			<div class="playernumer">
+				<div class="title">玩家配比</div>
+				<ul id="playerlist">
+					<li><img src="images/shashou.png"><span>杀手</span></li>
+					<li><img src="images/shashou.png"><span>杀手</span></li>
+					<li><img src="images/pingmin.png"><span>平民</span></li>
+					<li><img src="images/pingmin.png"><span>平民</span></li>
+					<li><img src="images/pingmin.png"><span>平民</span></li>
+					<li><img src="images/pingmin.png"><span>平民</span></li>
+				</ul>
+				<span id="numset">点击设置<i class="iconfont">&#xe609;</i></span>				
+			</div>
+			<div class="wordset">
+				<ul>
+					<li>请输入杀手词组：<input type="text" value="" class="myinput" id="killerword"/></li>
+					<li>请输入平民词组：<input type="text" value="" class="myinput" id="peopleword"/></li>
+				</ul>
+			</div>
+			<div class="playerset">
+				<div class="players">
+					请输入玩家数量：
+					<input type="text" value="6" class="myinput" id="playernum"/>人
+					<span>(6-18人)</span>
+				</div>
+				<div id="number">
+					<input type="button" value="-" id="subnum"/>
+					<input type="range" min="6" max="18" value="0" id="playerbar"/>
+					<input type="button" value="+" id="addnum"/>
+				</div>
+			</div>
+			
+			<input type="button" value="去发牌" class="mybtns startbtn" onclick="seecard()"/>
+		</div>
+		<script type="text/javascript" src="js/task_startset.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+		<script type="text/javascript" src="js/RangeSlider.js" ></script>
+	</body>
+</html>

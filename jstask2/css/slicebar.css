@@ -1,0 +1,105 @@
+/*去除系统默认的样式*/
+
+input[type=range] {
+    -webkit-appearance: none;
+    border-radius: 10px; 
+    background: -webkit-linear-gradient(#fbb435, #fbb435) no-repeat;
+    background-size: 0% 100%;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}    
+
+/*给滑动轨道(track)添加样式*/
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 5px; 
+    border:solid 1px #fbb435;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+/*给滑块(thumb)添加样式*/
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    margin-top: -5px; /*使滑块超出轨道部分的偏移量相等*/
+    background: #FBB435; 
+    border-radius: 15px; 
+}
+
+
+
+/*火狐浏览器兼容*/
+
+input[type=range]::-moz-range-thumb {
+    -webkit-appearance: none;
+} 
+
+input[type=range]::-moz-range-track {
+    height: 8px;
+    border-radius: 8px; 
+    background: #fedda2; 
+}
+
+input[type=range]::-moz-range-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    margin-top: -5px; /*使滑块超出轨道部分的偏移量相等*/
+    background: #FBB435; 
+    border-radius: 15px; 
+    border:none;
+}
+
+input[type=range]::-moz-range-progress {
+    background: linear-gradient(#fbb435, #fbb435) no-repeat;
+    height: 8px;    
+    border-radius: 8px;
+}
+
+
+
+/*IE9以上浏览器兼容*/
+
+input[type=range]::-ms-track {
+    height: 8px;
+    border-radius: 5px; 
+    border:solid 1px #fbb435;
+    border-color: transparent; /*去除原有边框*/
+    color: transparent; /*去除轨道内的竖线*/
+}
+
+input[type=range]::-ms-thumb {
+    height: 15px;
+    width: 15px;
+    margin-top: -5px; /*使滑块超出轨道部分的偏移量相等*/
+    background: #FBB435; 
+    border-radius: 15px; 
+}
+
+input[type=range]::-ms-fill-lower {
+    /*进度条已填充的部分*/
+    height: 8px;
+    border-radius: 8px;
+    background: linear-gradient(#fbb435, #fbb435) no-repeat;
+}
+
+input[type=range]::-ms-fill-upper {
+    /*进度条未填充的部分*/
+    height: 8px;
+    border-radius: 8px;
+    background: #FEDDA2;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+    background: linear-gradient(#fbb435, #fbb435) no-repeat;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+     background: #FEDDA2;
+}

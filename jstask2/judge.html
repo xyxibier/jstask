@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+		<link rel="stylesheet" href="css/css.css" />
+		<title>法官台本</title>
+	</head>
+
+	<body>
+		<div id="top">
+			<i class="iconfont" onclick="window.history.back(-1);">&#xe631;</i>
+			<span>法官台本</span>
+			<i class="iconfont iconright" onclick="toindex()">&#xe632;</i>
+		</div>
+		<div class="judgebox">
+			<!--<div class="theday">
+				<span class="daytitle">
+					<h4>第 1 天</h4>
+					<i class="iconfont suoqi" style="display: block;">&#xe60a;</i>
+					<i class="iconfont zhankai" style="display: none;">&#xe600;</i>
+				</span>
+				<div class="daybox" style="display: block;">
+					<ul>
+						<li>
+							<input class="mybtns killbtn" type="button" value="杀手杀人"/>
+							<p class="killfont"></p>
+						</li>
+						<li><input class="mybtns ghostsay" type="button" value="亡灵发表遗言"/></li>
+						<li><input class="mybtns playersay" type="button" value="玩家依次发言"/></li>
+						<li>
+							<input class="mybtns vote" type="button" value="投票" id="vote" />
+							<p class="votefont"></p>
+						</li>
+					</ul>
+					<div style="clear: both;"></div>
+				</div>
+			</div>-->
+			<input type="button" class="mybtns judgebtn" value="结束游戏" onclick="endGame()" />
+		</div>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="js/task_judge.js"></script>
+		<script type="text/javascript" src="js/task_endgame.js" ></script>
+	</body>
+
+</html>

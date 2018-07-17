@@ -1,0 +1,6 @@
+#ninebox{margin: 4vw auto;display: flex;flex-wrap: wrap;justify-content: center;}
+#ninebox span{width: 30vw;height: 30vw;background: #FFB000;display: inline-block;border-radius: 10px;margin:0 1vw 1vw 0;}
+#ninebox span:nth-child(3n){margin-right: 0;}
+		
+input{width: 92vw;height: 12vw;border: solid 1px #FFB000;background: #fff;border-radius: 5px;display: block;margin: 5vw auto;color: #FFB000;cursor: pointer;font-size: 1em;}
+input:hover{background: #FFB000;color: #fff;}

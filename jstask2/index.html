@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+		<link rel="stylesheet" href="css/css.css" />
+		<title>首页</title>
+	</head>
+	<body>
+		<div id="gamecontent">
+			<div id="top">
+				<i class="iconfont" id="itembaricon">&#xe601;</i>
+				<span id="gametitle">捉鬼游戏</span>
+			</div>
+			<div id="mycontent">
+				<div class="prev">
+					<span>上次游戏：杀人游戏简化版</span>
+					<i class="iconfont">&#xe600;</i>
+				</div>		
+				
+				<div class="gamebox">			
+					<div class="item" style="display: block;">
+						<div class="title game">捉鬼游戏</div>
+						<div class="gamelevel">
+							<input type="button" value="简化版" />
+							<span>有11个用户正在玩此款游戏</span>
+							<input type="button" value="猜词版" />
+							<span>有12个用户正在玩此款游戏</span>
+							<input type="button" value="杀人版" />
+							<span>有13个用户正在玩此款游戏</span>
+						</div>					
+					</div>
+					
+					<div class="item" style="display: none;">
+						<div class="title game">杀人游戏</div>
+						<div class="gamelevel">
+							<input type="button" value="简化版" onclick="startset()"/>
+							<span>有21个用户正在玩此款游戏</span>
+							<input type="button" value="警版" />
+							<span>有22个用户正在玩此款游戏</span>
+							<input type="button" value="3.0版" />
+							<span>有23个用户正在玩此款游戏</span>
+						</div>					
+					</div>
+					
+					<div class="item gamewolf" style="display: none;">
+						<div id="wolfbox">							
+							<img src="images/langren.png" />
+							<h2 class="game">狼人杀</h2>
+							<span>有1133个用户正在玩此款游戏</span>
+						</div>
+					</div>
+					
+					<div id="leftbtn" style="display: none;"></div>
+					<div id="rightbtn"></div>
+					<ul id="lunbo">
+						<li class="current"></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		</div>		
+		
+		<div id="mask" style="display: none;"></div>
+		<div id="itembar" style="display: none;">
+			<ul>
+				<li onclick="gonggao()"><i class="iconfont">&#xe6b6;</i><span>公告</span><i class="iconfont right">&#xe600;</i></li>
+				<li onclick="setting()"><i class="iconfont">&#xe62c;</i><span>设置</span><i class="iconfont right">&#xe600;</i></li>
+				<li onclick="help()"><i class="iconfont">&#xe6a4;</i><span>帮助</span><i class="iconfont right">&#xe600;</i></li>
+				<li onclick="aboutus()"><i class="iconfont">&#xe60b;</i><span>关于</span><i class="iconfont right">&#xe600;</i></li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript" src="js/task_index.js" ></script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+    
+@font-face {
+  font-family: 'iconfont';  /* project id 719253 */
+  src: url('//at.alicdn.com/t/font_719253_cpof1s4lsin.eot');
+  src: url('//at.alicdn.com/t/font_719253_cpof1s4lsin.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_719253_cpof1s4lsin.woff') format('woff'),
+  url('//at.alicdn.com/t/font_719253_cpof1s4lsin.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_719253_cpof1s4lsin.svg#iconfont') format('svg');
+}
+
+*{color: #333;text-decoration: none;}
+input{outline: none;}
+body{background: url(../img/bg.jpg) no-repeat center;height: 98.2vh;}
+
+#loginbox{background-color: rgba(255,255,255,0.5);position: absolute;left: 0;top: 0;}
+
+.title{width: 300px;height: 60px;line-height: 60px;text-align: center;color: #039FF1;}
+
+.content{padding: 0 30px;}
+.inputbox{background: #fff;padding: 8px;margin-bottom: 10px;}
+.inputbox i{border-right: 1px solid #eee;padding-right: 8px;}
+.inputbox input{width: 200px;border: none;color: #999;text-indent: 5px;}
+
+.btnbox{width: 248px;padding:20px 0;}
+.btnbox input{width:100%;height: 38px;border: none;color: #fff;cursor: pointer;background: #039FF1;border-radius: 5px;font-size: 14px;}
+
+#tishi{font-size: 12px;color: red;text-indent: 45px;}
