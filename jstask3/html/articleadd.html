@@ -1,0 +1,88 @@
+<div class="conbox" ng-controller='addCtrl'>
+	<div class="tablehead">
+		<h4>新增Article</h4>
+		<input type="button" value="取消" class="mybtn red" style="margin-top: 6px;" ng-click="clearAdd()"/>
+	</div>
+	<div class="tablebox">
+		<div class="addform">
+			<div class="addline">
+				<label>标题名称</label>
+				<input type="text" class="mytext" ng-model="modelAddTitle"/>
+			</div>
+			<div class="addline">
+				<label>类<span></span>型</label>
+				<div class="selectbox">					
+					<select ng-model="modelAddType" ng-options="x.id as x.name for x in types" style="margin-right: 10px;">
+						<option value="">--请选择--</option>
+					</select>
+					<select ng-model="modelAddIndustry" ng-options="x.id as x.name for x in industry" ng-show="showSelect()">
+						<option value="">--请选择--</option>
+					</select>
+				</div>
+			</div>
+			<div class="addline">
+				<label>说<span></span>明</label>
+				<div style="width: 100%;">					
+					<div id="summernote"></div>
+				</div>		
+			</div>
+			<div class="addline">
+				<label>跳转链接</label>
+				<input type="text" class="mytext" ng-model="modelAddUrl"/>
+			</div>
+			<div class="addline" style="margin-top: 5px;">
+				<label>图<span></span>片</label>
+				<div class="form-group" style="width: 100%;">
+
+					<div class="uploadbtn" id="uploadbtn">
+						<input type="file" file-model="myFile" nv-file-select uploader="uploader">
+						<span>选择文件</span>
+					</div>
+					
+					<img ng-hide='removeimg' ng-src="{{modelAddImg}}" class="showimg" id="hideimg">
+			
+					<table class="listtable">
+						<thead>
+							<tr>
+								<th>图片预览</th>
+								<th>文件名称</th>
+								<th>文件大小</th>
+								<th width="200">进度</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in uploader.queue">
+								<td>
+									<div ng-thumb="{ file: item._file, height: 80 }"></div>
+								</td>
+								<td>{{item.file.name}}</td>
+								<td>{{item.file.size/1024/1024|number:2}}M</td>
+								<td>
+									<div class="progress" style="margin-bottom: 0;">
+										<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+									</div>
+								</td>
+								<td>
+									<span ng-hide="item.isSuccess || item.isError">未上传</span>
+                                    	<span ng-show="item.isSuccess"><i class="iconfont">&#xe6e5;</i></span>
+                                    	<span ng-show="item.isError">上传错误</span>
+                               	</td>
+								<td nowrap>
+									<button type="button" class="btn btn-success btn-xs" ng-click="item.upload();showImg()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">上传</button>
+									<button type="button" class="btn btn-danger btn-xs" ng-click="item.remove();hideImg()">删除</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<div class="submit">
+						<input type="button" ng-click="online();submitAdd(modelAddId)" class="mybtn green imgbtn" value="立即上线"/>
+						<input type="button" ng-click="offline();submitAdd(modelAddId)" class="mybtn green imgbtn" value="存为草稿"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

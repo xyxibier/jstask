@@ -1,0 +1,109 @@
+<div class="conbox" ng-controller='artCtrl'>
+	<form name="searchform" class="searchbox" ng-submit="pageSearch()">
+		<div class="lineone">
+			<label>标<span></span>题</label>
+			<input type="text" class="mytext" ng-model='modelTitle'/>
+			
+			<label>创&nbsp;&nbsp;建&nbsp;&nbsp;者</label>
+			<input type="text" class="mytext" ng-model='modelAuthor'/>			
+			
+			<label>类<span></span>型</label>
+			<select ng-model="modelType" ng-options='x.id as x.name for x in mytype'></select>
+		</div>
+		
+		<div class="lineone">			
+			<label>状<span></span>态</label>
+			<select ng-model="modelStatus" ng-options='x.id as x.name for x in mystatus'></select>
+			
+			<label>发布时间</label>
+			<div class="pubtime">
+				<input type="text" uib-datepicker-popup="{{format}}" ng-model="modelDateFrom" is-open="popup1.opened" close-text="关闭" clear-text="清空" current-text="今天"/>
+				<i class="iconfont" ng-click="open1()">&#xe643;</i>
+				<div style="clear: both;"></div>
+			</div>
+			<span>-</span>
+			<div class="pubtime">
+				<input type="text" uib-datepicker-popup="{{format}}" ng-model="modelDateTo" is-open="popup2.opened" close-text="关闭" clear-text="清空" current-text="今天"/>
+				<i class="iconfont" ng-click="open2()">&#xe643;</i>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		
+		<div class="linetwo">
+			<input type="button" value="重置" class="mybtn red searchbtn" ng-click='resetSearch()'/>
+			<input type="submit" value="搜索" class="mybtn green searchbtn"/>
+		</div>	
+	</form>
+	
+
+	<div class="tablehead">
+		<h4>Article列表</h4>
+		<input type="button" value="+新增" class="mybtn green" ng-click='addNew()'/>
+	</div>
+	<div class="tablebox">
+		<table class="listtable">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>名称</th>
+					<th>类型</th>
+					<th>图片</th>
+					<th>发布者</th>
+					<th>创建时间</th>
+					<th>更新时间</th>
+					<th>状态</th>
+					<th width="170px;">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="x in lists">					
+					<td>{{x.id}}</td>
+					<td>{{x.title}}</td>
+					<td>{{x.type | typeFilter}}</td>
+					<td><img ng-src="{{x.img}}"></td>
+					<td>{{x.author}}</td>
+					<td>{{x.createAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+					<td>{{x.updateAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+					<td>{{x.status | statusFilter}}</td>
+					<td>
+						<a ng-click='offline(x)' ng-bind='lineStatus(x)'>下线</a>
+						<a ng-click='editArt(x)'>编辑</a>
+						<a ng-click='deletelist(x)'>删除</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="fenye">
+		<form class="sizeform">
+			<label>每页显示</label>
+        		<input type="number" class="maxsize" ng-model='pagesize'>	
+        		<label>条</label>
+			<input type="button" value="确认" class="mybtn green pagebtn" ng-click="pageSize()">
+		</form>
+		
+		<form class="pageform">
+			<label>去第</label>
+        		<input type="number" class="maxsize" ng-model='gopage'>	
+        		<label>页</label>
+			<input type="button" value="确认" class="mybtn green pagebtn" ng-click="goPage()">
+		</form>
+		
+		<ul uib-pagination
+			total-items="totalItems" 	
+			ng-model ="currentPage" 		
+			max-size="maxSize" 				
+			items-per-page="itemsPerPage"			
+			first-text="首页" 
+			previous-text="上一页" 
+			next-text="下一页" 
+			last-text="尾页" 
+			boundary-links="true"			
+			boundary-link-numbers="true"
+			ng-change='pageChange()'
+			class="pageModel">	
+		</ul>
+	</div>
+	
+</div>

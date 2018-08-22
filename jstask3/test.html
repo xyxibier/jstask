@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="ui.bootstrap.demo" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script>
+    <script src="/Scripts/angular-locale_zh-cn.js"></script>
+    <script>
+        angular.module('ui.bootstrap.demo', ['ui.bootstrap']).controller('DatepickerPopupDemoCtrl', function ($scope) {
+            $scope.dat = new Date();
+            $scope.format = "yyyy/MM/dd";
+            $scope.altInputFormats = ['yyyy/M!/d!'];
+
+            $scope.popup1 = {
+                opened: false
+            };
+            $scope.open1 = function () {
+                $scope.popup1.opened = true;
+            };
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller="DatepickerPopupDemoCtrl">
+        <p class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dat" is-open="popup1.opened" ng-required="true" close-text="关闭"
+                       clear-text="清空" current-text="今天" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </div>
+        </p>
+    </div>
+</body>
+</html>

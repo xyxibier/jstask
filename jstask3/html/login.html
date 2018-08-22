@@ -1,0 +1,19 @@
+<div ng-controller='loginCtrl' style="background: url(../img/bg.jpg) no-repeat center;height:100vh;">
+	<div class="loginbox">
+		<div class="title">后台登录</div>
+		<form name="loginform" class="content">
+			<div class="inputbox">
+				<i class="iconfont">&#xe801;</i>
+				<input class="mytext" name='user' type="input" placeholder="请输入用户名" ng-model='user'/>
+			</div>
+			<div class="inputbox">
+				<i class="iconfont">&#xe603;</i>
+				<input class="mytext" name="pass" type="password" placeholder="请输入密码" ng-model='pass'/>
+			</div>
+			<p class="tishi">{{tishi}}</h1></p>
+			<div class="btnbox">
+				<a class="mybtn" ng-click='loginbtn()' style="color: #fff;">登 录</a>
+			</div>
+		</form>
+	</div>
+</div>		

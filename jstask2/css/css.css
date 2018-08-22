@@ -14,19 +14,11 @@ body{background: #f2f2f2;}
     
 @font-face {
   font-family: 'iconfont';  /* project id 719253 */
-<<<<<<< HEAD
-  src: url('//at.alicdn.com/t/font_719253_cpof1s4lsin.eot');
-  src: url('//at.alicdn.com/t/font_719253_cpof1s4lsin.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_719253_cpof1s4lsin.woff') format('woff'),
-  url('//at.alicdn.com/t/font_719253_cpof1s4lsin.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_719253_cpof1s4lsin.svg#iconfont') format('svg');
-=======
-  src: url('//at.alicdn.com/t/font_719253_1oadbttq4jk.eot');
-  src: url('//at.alicdn.com/t/font_719253_1oadbttq4jk.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_719253_1oadbttq4jk.woff') format('woff'),
-  url('//at.alicdn.com/t/font_719253_1oadbttq4jk.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_719253_1oadbttq4jk.svg#iconfont') format('svg');
->>>>>>> f16ece9735260663219a1c4be5b0b35033b2d4d9
+  src: url('//at.alicdn.com/t/font_719253_n0ag6ofj0wf.eot');
+  src: url('//at.alicdn.com/t/font_719253_n0ag6ofj0wf.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_719253_n0ag6ofj0wf.woff') format('woff'),
+  url('//at.alicdn.com/t/font_719253_n0ag6ofj0wf.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_719253_n0ag6ofj0wf.svg#iconfont') format('svg');
 }
 
 /********启动页********/
