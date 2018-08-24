@@ -30,14 +30,19 @@ var voteindex=sessionStorage.getItem('voteindex');
 //点击杀人事件
 var kill=false;
 $('.partlist').delegate('li','click',function(e){	
+	kill=true;
 	var index=$(this).index();	
 	$(this).css('border','solid 2px red');				
 	$(this).siblings().css('border','solid 2px #fff');
-<<<<<<< HEAD
 	if(killpage){
-=======
+		if(partObj[index].name=='杀手'){
+			kill=false;
+		}else{			
+			kill=true;
+			sessionStorage.setItem('killindex',index);
+		}	
+	}
 	if(killpage&&partObj[index].name=='平民'){
->>>>>>> f16ece9735260663219a1c4be5b0b35033b2d4d9
 		if(partObj[index].name=='杀手'){
 			kill=false;
 		}else{			

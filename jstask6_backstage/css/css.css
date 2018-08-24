@@ -55,10 +55,13 @@ select{height: 32px;border-radius: 5px;border: 1px solid #dcdcdc;background: #ff
 .navlist ul li .listbox i{color: #fff;}
 .navlist ul li .listbox span{color: #fff;font-size: 16px;display: inline-block;width: 165px;margin-left: 5px;}
 .navlist ul li .listbox .jiantou{display: inline-block;}
-.navlist ul li ul.listlist{margin: 0;}
-.navlist ul li ul.listlist li{color: #fff;text-indent: 60px;line-height: 45px;cursor: pointer;}
-.navlist ul li ul.listlist li:hover{background:#7a7e88;}
+.navlist ul li ul.sublist{margin: 0;}
+.navlist ul li ul.sublist li{color: #fff;text-indent: 60px;line-height: 45px;cursor: pointer;}
+.navlist ul li ul.sublist li:hover{background:#7a7e88;}
 .select{background:#7a7e88;}
+
+.open{display: block;}
+.hide{display: none;}
 
 .rightbox{width: 100%;height: 100vh;overflow-y: scroll;}
 .righthead{height: 65px;line-height:65px;background: #fff;box-shadow: -30px -20px 50px #333;position: fixed;left: 250px;right: 15px;}
@@ -117,6 +120,8 @@ select{height: 32px;border-radius: 5px;border: 1px solid #dcdcdc;background: #ff
 
 
 /*添加文章*/
+.must{color: red;margin-left: 4px;}
+
 .addform{padding:0 20px;}
 .addline{margin: 30px 0;display: flex;}
 .addline label{width: 100px;font-size:15px;flex-shrink: 0;}
@@ -134,8 +139,14 @@ select{height: 32px;border-radius: 5px;border: 1px solid #dcdcdc;background: #ff
 
 .uploadbtn{width: 72px;height: 28px;position: relative;cursor: pointer;}
 .uploadbtn input[type='file']{opacity: 0;z-index: 999;position: absolute;left: 0;width: 72px;height: 28px;cursor: pointer;}
-.uploadbtn span{position:absolute;top: 0;left: 0;font-size: 13px;color: #fff;border-radius: 5px;background: #5cb85c;z-index: 1;padding: 5px 10px;cursor: pointer;}
+.uploadbtn span{position:absolute;top: 0;left: 0;font-size: 13px;color: #fff;border-radius: 5px;z-index: 1;padding: 5px 10px;cursor: pointer;background: #5cb85c;}
+.uploadbtn span.disabledcss{cursor: not-allowed!important;background: #ddd;}
 
 .submit{margin-top: 20px;}
 .imgbtn{padding: 10px 20px;width: 150px!important;margin-right: 10px;}
 .showimg{margin: 20px 0;width: 300px;height: auto;}
+
+/*按钮禁止*/
+.submit button[disabled], html input[disabled]{cursor: not-allowed!important;background: #ddd;}
+.submit button[disabled], html input[disabled]:hover{background: #ddd;}
+

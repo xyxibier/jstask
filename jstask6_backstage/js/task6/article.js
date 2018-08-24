@@ -121,12 +121,13 @@ xyapp.controller('artCtrl', function($scope, $http, $stateParams, $state, $filte
 	$scope.resetSearch = function() {
 		$state.go('backindex.article', {
 			page: 1,
+			size:10,
 			title: null,
 			author: null,
 			type: null,
 			status: null,
 			startAt: null,
-			endAt: null,
+			endAt: null,			
 		}, {
 			reload: true,
 		})

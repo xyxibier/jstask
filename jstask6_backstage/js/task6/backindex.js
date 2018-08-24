@@ -30,6 +30,4 @@ xyapp.controller('backCtrl',function($scope,$state,$http,$sce){
 	//nav列表
 	$scope.nav = nav;
 	
-	//点击显示隐藏事件
-	$scope.myhide=true;	
 });

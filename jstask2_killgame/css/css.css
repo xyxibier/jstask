@@ -186,7 +186,7 @@ body{background: #f2f2f2;}
 
 
 /********身份列表********/
-.fpbox ul.partlist{display: flex;flex-wrap: wrap;justify-content:center;padding: 20px;box-sizing: border-box;max-height: 76vh;overflow: scroll;}
+.fpbox ul.partlist{display: flex;flex-wrap: wrap;justify-content:center;padding: 20px;box-sizing: border-box;max-height: 76vh;overflow-y: scroll;}
 .fpbox ul.partlist li{width: 13vh;height: 13vh;border:solid 2px #fff;margin: 10px;background: #F5C97B;}
 .fpbox ul.partlist li span.thispart{height: 9.5vh;text-align: center;line-height: 9.5vh;display: block;}
 .fpbox ul.partlist li span.thisnum{height: 3.5vh;background: #83B09A;text-align: center;line-height: 3.5vh;display: block;font-size: 12px;}
@@ -224,7 +224,7 @@ body{background: #f2f2f2;}
 .fontbox p{line-height: 26px;font-size: 14px;}
 .fontbox span{font-size: 14px;}
 
-.daydetail ul{max-height: 40vh;overflow: scroll;}
+.daydetail ul{max-height: 40vh;overflow-y: scroll;}
 .daydetail ul li{width: 80%;background: #fff;margin:0 auto;padding: 10px;border-bottom: 1px solid #29BDE0;}
 .daydetail ul li h4{margin-bottom: 10px;}
 .daydetail ul li p{line-height: 28px;font-size: 14px;}

@@ -4,9 +4,9 @@
 			<h3>西比尔后台管理系统</h3>
 		</div>
 		<nav class="navlist">
-			<ul>
+			<ul id="navlist">
 				<li ng-repeat='x in nav'>
-					<div class="listbox" ng-click='myhide =!myhide;'>								
+					<div class="listbox" ng-click='myhide =!myhide;'>
 						<i class="iconfont">&#xe63b;</i>
 						<span>{{x.menu.name}}</span>
 						<div class="jiantou">
@@ -14,7 +14,7 @@
 							<i class="iconfont" ng-hide='myhide'>&#xe60a;</i>
 						</div>
 					</div>
-					<ul ng-hide='myhide' class="listlist">
+					<ul ng-hide='myhide' class="sublist">
 						<li ng-repeat='y in x.submenu' ui-sref='{{y.sref}}' ui-sref-active="select">{{y.name}}</li>
 					</ul>
 				</li>

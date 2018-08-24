@@ -63,7 +63,7 @@ xyapp.controller('addCtrl', function($scope,$http,$state,FileUploader) {
 	//点击上传时显示预览图
 	$scope.showImg=function(){
 		$('#hideimg').show();
-	}
+	}	
 	
 	//提交按钮
 	$scope.submitAdd=function(id){
@@ -116,6 +116,7 @@ xyapp.controller('addCtrl', function($scope,$http,$state,FileUploader) {
 					console.log("新增系统正常");
 					$state.go('backindex.article');
 				}else{
+					alert('请输入完整表单');
 					console.log("新增系统错误");
 				}
 			}, function(error) {
@@ -128,4 +129,5 @@ xyapp.controller('addCtrl', function($scope,$http,$state,FileUploader) {
 	$scope.clearAdd=function(){
 		$state.go('backindex.article');
 	}
+	
 })

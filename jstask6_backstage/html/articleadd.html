@@ -6,11 +6,11 @@
 	<div class="tablebox">
 		<div class="addform">
 			<div class="addline">
-				<label>标题名称</label>
+				<label>标题名称<span class="must" ng-hide='modelAddTitle'>*</span></label>
 				<input type="text" class="mytext" ng-model="modelAddTitle"/>
 			</div>
 			<div class="addline">
-				<label>类<span></span>型</label>
+				<label>类<span></span>型<span class="must" ng-hide='modelAddType!==undefined'>*</span></label>
 				<div class="selectbox">					
 					<select ng-model="modelAddType" ng-options="x.id as x.name for x in types" style="margin-right: 10px;">
 						<option value="">--请选择--</option>
@@ -27,16 +27,16 @@
 				</div>		
 			</div>
 			<div class="addline">
-				<label>跳转链接</label>
+				<label>跳转链接<span class="must" ng-hide='modelAddUrl'>*</span></label>
 				<input type="text" class="mytext" ng-model="modelAddUrl"/>
 			</div>
 			<div class="addline" style="margin-top: 5px;">
-				<label>图<span></span>片</label>
+				<label>图<span></span>片<span class="must" ng-hide='modelAddImg'>*</span></label>
 				<div class="form-group" style="width: 100%;">
 
 					<div class="uploadbtn" id="uploadbtn">
-						<input type="file" file-model="myFile" nv-file-select uploader="uploader">
-						<span>选择文件</span>
+						<span ng-class="{'disabledcss':modelAddImg}">选择文件</span>
+						<input type="file" file-model="myFile" nv-file-select uploader="uploader" ng-disabled="modelAddImg">
 					</div>
 					
 					<img ng-hide='removeimg' ng-src="{{modelAddImg}}" class="showimg" id="hideimg">
@@ -78,8 +78,8 @@
 					</table>
 					
 					<div class="submit">
-						<input type="button" ng-click="online();submitAdd(modelAddId)" class="mybtn green imgbtn" value="立即上线"/>
-						<input type="button" ng-click="offline();submitAdd(modelAddId)" class="mybtn green imgbtn" value="存为草稿"/>
+						<input type="button" ng-disabled="!modelAddTitle||modelAddType==undefined||!modelAddUrl||!modelAddImg" ng-click="online();submitAdd(modelAddId);" class="mybtn green imgbtn" value="立即上线"/>
+						<input type="button" ng-disabled="!modelAddTitle||modelAddType==undefined||!modelAddUrl||!modelAddImg" ng-click="offline();submitAdd(modelAddId);" class="mybtn green imgbtn" value="存为草稿"/>
 					</div>
 				</div>
 			</div>

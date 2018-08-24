@@ -2,7 +2,7 @@
 var nav=[
 	{
 		'menu':{'name':'信息管理'},
-		'submenu':[{'name':'公司信息','sref':'backindex.company'},{'name':'职位信息','sref':'backindex.work'}]
+		'submenu':[{'name':'公司信息','sref':'backindex.welcome'},{'name':'职位信息','sref':'backindex.work'}]
 	},{
 		'menu':{'name':'内容管理'},
 		'submenu':[{'name':'Article管理','sref':'backindex.article'}]
