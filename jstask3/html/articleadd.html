@@ -35,8 +35,8 @@
 				<div class="form-group" style="width: 100%;">
 
 					<div class="uploadbtn" id="uploadbtn">
-						<span ng-class="{'disabledcss':modelAddImg}">选择文件</span>
-						<input type="file" file-model="myFile" nv-file-select uploader="uploader" ng-disabled="modelAddImg">
+						<span ng-class="{'disabledcss':addfile}">选择文件</span>
+						<input type="file" file-model="myFile" nv-file-select uploader="uploader" ng-disabled="addfile">
 					</div>
 					
 					<img ng-hide='removeimg' ng-src="{{modelAddImg}}" class="showimg" id="hideimg">

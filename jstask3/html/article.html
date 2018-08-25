@@ -57,7 +57,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="x in lists">					
-					<td>{{x.id}}</td>
+					<td>{{$index+1}}</td>
 					<td>{{x.title}}</td>
 					<td>{{x.type | typeFilter}}</td>
 					<td><img ng-src="{{x.img}}"></td>

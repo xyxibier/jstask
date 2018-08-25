@@ -47,6 +47,12 @@ xyapp.controller('addCtrl', function($scope,$http,$state,FileUploader) {
     uploader.url='/carrots-admin-ajax/a/u/img/task';  
     uploader.queue=[];
     
+    //添加图片后回调
+	uploader.onAfterAddingFile = function(fileItem) {
+      console.info('onAfterAddingFile', fileItem);
+      $scope.addfile=true;
+    };
+    
     //上传完成后回调
 	uploader.onCompleteItem = function(fileItem, response) {
 		console.info('onCompleteItem', fileItem, response);
@@ -129,5 +135,4 @@ xyapp.controller('addCtrl', function($scope,$http,$state,FileUploader) {
 	$scope.clearAdd=function(){
 		$state.go('backindex.article');
 	}
-	
 })

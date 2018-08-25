@@ -30,4 +30,21 @@ xyapp.controller('backCtrl',function($scope,$state,$http,$sce){
 	//nav列表
 	$scope.nav = nav;
 	
+	//状态保存
+	$scope.isOpen = function(index) {
+		console.log($scope.nav[index].menu.status)
+		if ($scope.nav[index].menu.status) {
+			switch (index) {
+				case 0: window.sessionStorage.setItem('m1', '0');break;
+				case 1: window.sessionStorage.setItem('m2', '0');break;
+				case 2: window.sessionStorage.setItem('m3', '0');break;
+			 } 
+		}else {
+			switch (index) {
+				case 0: window.sessionStorage.setItem('m1', '1');break;
+				case 1: window.sessionStorage.setItem('m2', '1');break;
+				case 2: window.sessionStorage.setItem('m3', '1');break;
+			} 
+		}
+	}
 });

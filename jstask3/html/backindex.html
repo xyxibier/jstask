@@ -6,15 +6,15 @@
 		<nav class="navlist">
 			<ul id="navlist">
 				<li ng-repeat='x in nav'>
-					<div class="listbox" ng-click='myhide =!myhide;'>
+					<div class="listbox" ng-click='isOpen($index);nav[$index].menu.status=!nav[$index].menu.status'>
 						<i class="iconfont">&#xe63b;</i>
 						<span>{{x.menu.name}}</span>
 						<div class="jiantou">
-							<i class="iconfont" ng-show='myhide'>&#xe600;</i>
-							<i class="iconfont" ng-hide='myhide'>&#xe60a;</i>
+							<i class="iconfont" ng-show='nav[$index].menu.status'>&#xe600;</i>
+							<i class="iconfont" ng-hide='nav[$index].menu.status'>&#xe60a;</i>
 						</div>
 					</div>
-					<ul ng-hide='myhide' class="sublist">
+					<ul ng-hide='nav[$index].menu.status' class="sublist">
 						<li ng-repeat='y in x.submenu' ui-sref='{{y.sref}}' ui-sref-active="select">{{y.name}}</li>
 					</ul>
 				</li>
