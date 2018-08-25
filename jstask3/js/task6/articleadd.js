@@ -59,9 +59,10 @@ xyapp.controller('addCtrl', function($scope,$http,$state,FileUploader) {
 		$scope.modelAddImg=response.data.url;
 	};
 	
-	//删除图片后清除信息
+	//删除图片后清除信息并恢复选择文件按钮
 	$scope.hideImg=function(){
-		$scope.modelAddImg = null;	
+		$scope.modelAddImg = null;
+		$scope.addfile=false;
 		$('#hideimg').hide();
 		$('#uploadbtn').css('margin-bottom','20px');
 	}
