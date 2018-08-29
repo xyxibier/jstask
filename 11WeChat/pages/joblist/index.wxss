@@ -1,0 +1,8 @@
+.tabbox{position: fixed;}
+.mytab{width: 180rpx!important;}
+.content{position: absolute;top: 10rpx;left: 180rpx;right: 10rpx;}
+
+.mytitle{flex: 2!important;}
+.myvalue{flex: 5!important;text-align: left!important;font-size: 24rpx;color: #999}
+
+ 

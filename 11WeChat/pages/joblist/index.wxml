@@ -1,0 +1,32 @@
+<view style='display:flex;'>
+
+  <van-badge-group :active="active" bind:change="onChange" custom-class='mytab' class='tabbox'>
+    <view wx:for="{{joblist}}" wx:for-index="index" wx:for-item="item" wx:key='name'>
+      <van-badge title="{{item}}" />
+    </view>
+  </van-badge-group> 
+
+  <view class='content'>
+    <view wx:for="{{joblistdetail}}" wx:for-index="index" wx:for-item="item" wx:key='name'>
+      <view wx:if="{{active == index}}">
+        <text class='center'>{{joblistdetail[active].name}}课程简介</text>
+        <van-cell-group>
+          <van-cell title="职业门槛" value="{{joblistdetail[active].threshold}}星" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="难易程度" value="{{joblistdetail[active].difficult}}星" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="成长周期" value="{{joblistdetail[active].cycle}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="求贤企业" value="{{joblistdetail[active].company}}" value-class="myvalue" title-class='mytitle'  wx:if="{{joblistdetail[active].company}}"/>
+          <van-cell title="入学基础" value="{{joblistdetail[active].basis}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="薪资待遇" value="{{jobmoney[active]}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="职业简介" value="{{joblistdetail[active].description}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="{{jobdetail[active][0].name}}" value="{{jobdetail[active][0].content}}" value-class="myvalue" title-class='mytitle' wx:if="{{jobdetail[active][0].name}}" />
+          <van-cell title="{{jobdetail[active][1].name}}" value="{{jobdetail[active][1].content}}" value-class="myvalue" title-class='mytitle' wx:if="{{jobdetail[active][1].name}}" />
+          <van-cell title="{{jobdetail[active][2].name}}" value="{{jobdetail[active][2].content}}" value-class="myvalue" title-class='mytitle' wx:if="{{jobdetail[active][2].name}}" />
+          <van-cell title="{{jobdetail[active][3].name}}" value="{{jobdetail[active][3].content}}" value-class="myvalue" title-class='mytitle' wx:if="{{jobdetail[active][3].name}}" />
+          <van-cell title="{{jobdetail[active][4].name}}" value="{{jobdetail[active][4].content}}" value-class="myvalue" title-class='mytitle' wx:if="{{jobdetail[active][4].name}}" />
+          <van-cell title="{{jobdetail[active][5].name}}" value="{{jobdetail[active][5].content}}" value-class="myvalue" title-class='mytitle' wx:if="{{jobdetail[active][5].name}}" />
+        </van-cell-group>
+      </view>
+    </view>
+  </view>
+
+</view>

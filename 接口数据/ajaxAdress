@@ -1,0 +1,697 @@
+angular.module('skillApp')
+    .factory('path', ['commonUtil', function (commonUtil) {
+
+        return {
+            //一、登录注册模块接口
+
+            //测试用户名
+            mobile: function (mobile) {
+                return "/a/mobile?mobile=" + mobile;
+            },
+            //注册
+            register: "/a/user",
+            //登录
+            login: "/a/login",
+            //获取图形验证码
+            getGenerate: "/a/captcha/generate",
+            //图形验证码
+            verifyCaptcha: function (Captcha) {
+                return "/a/captcha/verify?inputValue=" + Captcha;
+            },
+            //verifyCaptcha: "/a/captcha/verify",
+            //验证码发送
+            postCode: "/a/code/send",
+            //语音验证码发送
+            postVoiceCode: "/a/code/voice",
+            //忘记密码
+            forgetPwd: "/a/password/forget",
+            //注销
+            logout: "/a/u/logout",
+
+            //二、用户相关模块接口
+            // 本人信息读取
+            //请假记录
+            userLeave: function () {
+                return '/a/u/leaves/search'
+            },
+            //用户信息读取
+            selfInfo: function (token) {
+                return "/a/u/user/self?" + "token=" + token + "&now=" + new Date().getTime(); // prevent disk cache;
+            },
+            // //用户信息读取
+            // getUserInfo: function(uid){
+            //     return "/a/user?uid="+uid;
+            // },
+            //批量获取用户信息读取改版，与cid统一，预备放弃上面那条getUserInfo
+            getUserDetail: function (type, ids) {
+                return "/a/user/detail/" + type + commonUtil.concactArrayParam("uids", ids);
+            },
+            //新建个人档案
+            addDossier:function () {
+                return "/a/u/record"
+            },
+            //查看个人档案
+            getDossier:function () {
+                return "/a/u/record"
+            },
+            //请求省市区ID
+            getDossierPcaId:function () {
+              return "/a/area/number"
+            },
+            //查看本人最新一条审核记录
+            getRecordLog:function (recordLogId) {
+                return "/a/u/recordlog/"+recordLogId
+            },
+            // getMsgType1: function (type) {
+            //     return " /a/u/receive/message/" + type + "/search"
+            // },
+            //整体信息读取
+            getAllInfo: function () {
+                return "/a/info"
+            },
+            //修改密码
+            changePwd: "/a/u/password",
+            //修改个人信息
+            changeUserInfo: "/a/u/user",
+            //我的师弟
+            getStudentInfo: function (uid, type, page, size) {
+                return "/a/user/" + uid + "/student" + "?type=" + type + "&page=" + page + "&size=" + size;
+            },
+            //我的师兄
+            getTeacherInfo: function (uid) {
+                return "/a/user/" + uid + "/teacher"
+            },
+            //分配师兄
+            allocateTeacher: function () {
+                return "/a/u/teacher"
+            },
+            //用户任务进度
+            userProgress: function (uid) {
+                return "/a/user/" + uid + "/task/progress"
+            },
+            //用户任务总进度
+            userTaskProgress: function (oid) {
+                return "/a/task/" + oid + "/statistics"
+            },
+            userTaskTotalProgress: function (oid, uid) {
+                return "a/user/" + uid + "/task/" + oid + "/statistics"
+            },
+
+            //用户技能
+            userSkill: function (uid, oid) {
+                return "/a/user/" + uid + "/" + oid + "/skill/detail"
+            },
+            //用户邀请名单
+            userInvitation: function (uid) {
+                return "/a/user/" + uid + "/invite/search"
+            },
+            //三、班级相关接口
+            //职业相关
+            //职业列表
+            positionList: function () {
+                return "/a/occupation/list";
+            },
+            //获取职业详情
+            getPositionDate: function (oid) {
+                return "/a/occupation/" + oid
+            },
+            positionName: function (oid) {
+                return "/a/occupation/detail?oid=" + oid;
+            },
+            //用户班级列表
+            userClassList: function (uid, page, size) {
+                return "/a/user/class/list/" + uid + "?page=" + page + "&size=" + size;
+            },
+            //获取班级详情
+            getClassInfo: function (params) {
+                return "/a/classes/detail" + commonUtil.concactArrayParam("cid", params);
+            },
+            //获取至我的班级图标
+            getMyClassInfo: function () {
+                return "/a/u/user/self";
+            },
+
+            //获取班级列表
+            getClassList: function () {
+                return "/a/classes/search/query";
+            },
+            //获取职业信息列表
+            getPositionCount: function () {
+                return "/a/list/occupation/";
+            },
+            //获取职业人数情况
+            getTheCount: function () {
+                return "/a/count/occupation/";
+            },
+
+            //加入班级
+            joinClass: function (cid) {
+                return "/a/u/classmate/" + cid;
+            },
+            //退出班级
+            quitClass: function () {
+                return "/a/u/classes";
+            },
+
+            //任务相关
+            //获取任务详情
+            getTaskDetail: function (id) {
+                return "/a/task/" + id;
+            },
+            //获取任务列表
+            getTaskList: function (oid, id, page, size) {
+                return "/a/task/search/query" + "?oid=" + oid + "&id=" + id + "&page=" + page + "&size=" + size;
+            },
+            // //领取任务
+            // claimTask: function (tid) {
+            //     return "/a/u/task/judgement/" + tid;
+            // },
+            // //任务提审
+            // applyTask: function (tid) {
+            //     return "/a/u/task/judgement/" + tid;
+            // },
+            // //任务审核
+            // judgeTask: function (userTaskRelationId) {
+            //     return "/a/u/task/judgement/teacher/" + userTaskRelationId;
+            // },
+            //任务接受、提交、审核
+            taskReceiveAndSubmitAndReview: function (tid, type) {
+                return "/a/u/task/" + tid + "/" + type;
+            },
+            //任务审核列表
+            getjudgeListInfo: function (type, page, size) {
+                return "/a/u/task/review/list" + "?type=" + type + "&page=" + page + "&size=" + size
+            },
+            //任务审核详情
+            judgeDetail: function (userTaskRelationId) {
+                return "/a/task/review/" + userTaskRelationId + "/detail";
+            },
+            
+            //审核失败原因
+            failReason: function (tid) {
+                return "/a/u/task/judge/fail/" + tid;
+            },
+            //用户任务进度
+            taskProgress: function (uid) {
+                return "/a/task/progress/" + uid;
+            },
+
+            //四、日报相关接口
+            //获取个人日报
+            getClassmateDaily: function (uid, cid, page, size) {
+                //如果有cid，则获取当前班级日报,若无则获取个人所有日报
+                return "/a/user/daily/" + uid + "?cid=" + cid + "&page=" + page + "&size=" + size;
+            },
+            //获取日报列表
+            getDailyList: function () {
+                return "/a/daily/search/query"
+            },
+            //获取用户点赞/收藏 日报
+            userDaily: function (type) {
+                // return "/a/u/daily/" + type + "/sort/list"
+                return "/a/daily/" + type + "/sort/list"
+            },
+
+            // 获取日报
+            getDaily: function (did) {
+                return "/a/daily/" + did;
+            },
+            // 审核日报
+            judgeDaily: function (did, grateNum) {
+                return "/a/u/daily/evaluation/" + did + '?result=' + grateNum;
+            },
+            // 获取日报评论
+            getDailyComment: function (did, uid, page, size, startAt, endAt) {
+                return "/a/comment/search/query" + "?did=" + did + "&uid=" + uid + "&page=" + page + "&size=" + size + "&startAt=" + startAt + "&endAt=" + endAt;
+            },
+            // // 获取上一篇/下一篇日报
+            // getOtherDaily: function (did, direction) {
+            //     return "/a/daily/" + did + "/" + direction + "/detail"
+            // },
+
+            //班级日报列表  这里有问题
+            getClassesDailyLists: function (cid, page, size) {
+                return "/a/class/daily/" + cid + "?page=" + page + "&size=" + size;
+            },
+            //删除日报
+            delDaily: function (did) {
+                return "/a/u/daily/" + did;
+            },
+            //新建日报
+            newDaily: function (cid, task) {
+                return "/a/u/daily/" + cid + commonUtil.concactArrayParam("task", task);
+            },
+            //修改日报
+            changeDaily: function (did) {
+                return "/a/u/daily/" + did;
+            },
+
+            //评论日报
+            reviewDaily: function (did) {
+                return "/a/u/comment/" + did;
+            },
+
+
+            //修改或删除评论
+            updateOrDeleteDaily: function (commentId, params) {
+                return "/a/u/comment/" + commentId;
+            },
+
+            //五、图片接口
+
+            //上传图片接口
+            uploadImg: function (module) {
+                return "/a/u/img/" + module;
+            },
+
+
+            //七、用户收藏
+            //获取用户收藏/推荐
+            getUserDocument: function () {
+                return "/a/u/my/document/search";
+            },
+            //删除用户收藏
+            deleteUserDocument: function (documentId) {
+                return "/a/u/document/collection/" + documentId
+            },
+            //新增文档
+            addUserDocument: function () {
+                return "/a/u/document";
+            },
+            //修改文档
+            changeUserDocument: function (documentId) {
+                return "a/u/document/" + documentId;
+            },
+            //文档点赞(点赞，取消赞在一起)
+            likeDocument: function (documentId) {
+                return "/a/u/document/like/" + documentId
+            },
+            //收藏文档(收藏，取消收藏在一起)
+            collectionDocument: function (documentId) {
+                return " /a/u/document/collection/" + documentId;
+            },
+            //点赞(目前仅用于日报)
+            love: function (type, id, action) {
+                return " /a/u/love/" + type + '/' + id + '/' + action;
+            },
+            //收藏(目前仅用于日报)
+            collection: function (type, id, action) {
+                return " /a/u/collection/" + type + '/' + id + '/' + action;
+            },
+            //获取技能文档(不必登录)
+            getSkillDocument: function (sid, page, size) {
+                return "/a/skill/document/" + sid + "?page=" + page + "&size=" + size;
+            },
+            //获取技能视频（不必登录）
+            getSkillVideo: function (sid, page, size) {
+                return "/a/skill/video/" + sid + "?page=" + page + "&size=" + size;
+            },
+            //获取技能文档(必须登录)
+            uGetSkillDocument: function (sid, page, size) {
+                return "/a/u/skill/document/" + sid + "?page=" + page + "&size=" + size;
+            },
+            //获取技能视频(必须登录)
+            uGetSkillVideo: function (sid, page, size) {
+                return "/a/u/skill/video/" + sid + "?page=" + page + "&size=" + size;
+            },
+
+            //
+
+            //获取书籍详情(未登录)
+            nologinGetBookDetails: function (bid) {
+                return "/a/book/document/" + bid;
+            },
+            //获取书籍详情（登录）
+            loginGetBookDetails: function (bid) {
+                return "/a/u/book/document/" + bid;
+            },
+            //四期新增
+            //获取所有文档(必须登录)
+            loginGetAllDocument: function () {
+                return "/a/u/all/document";
+            },
+            //获取所有文档(不必登录)
+            noLoginGetAllDocument: function () {
+                return "/a/all/document";
+            },
+            //搜索资料
+            informationSearch: function (sids) {
+                return "/a/document/search" + commonUtil.concactArrayParam("sids", sids);
+            },
+
+
+            //八、技能接口
+            //获得某个任务所用技能
+            getTaskSkill: function (taskId) {
+                return "/a/task/skill/list/" + taskId;
+            },
+            // 技能列表
+            getSkillList: function (oid) {
+                return "/a/skill/list/" + oid;
+            },
+            //获取技能详情
+            getSkillDetail: function (sid) {
+                return "/a/skill/detail/" + sid;
+            },
+            //获取完成技能的用户列表
+            getSkillUser: function (sid, page, size) {
+                return "/a/skill/" + sid + "/user/list" + "?page=" + page + "&size=" + size;
+            },
+            //获得职业任务所有技能列表
+            getOccupationSkillList: function (oid) {
+                return "/a/occupation/task/skill/" + oid
+            },
+            //资料预览
+            getOccupationDocument: function (arr) {
+                return "/a/task/document?sids=" + arr;
+            },
+
+
+            //资料预览
+            // getOccupationSkills: function (oid) {
+            //     return "/a/skill/list/" + oid
+            // },
+
+            //线下实战部分
+            //分院信息
+            //分院列表
+            getBranchList: function () {
+                return "/a/branch/search/query?status=0";
+            },
+            //分院学员信息
+            getPrincipal: function (id) {
+                return "/a/branch/"+id+"/detail";
+            },
+            //分院相册
+            getPhotos: function () {
+                return "/a/contents/search";
+            },
+            //分院真传信息
+            getMaster: function () {
+                return "/a/successor/search";
+            },
+            //获取学员信息
+            getUser: function () {
+                return "/a/user/list";
+            },
+            //获取学员信息
+            getLine: function () {
+                return "/a/branch/statistics";
+            },
+            //职业日报列表
+            getOccupationDailyLists: function (oid, page, size) {
+                return "a/occupation/daily/" + oid + "?page=" + page + "&size=" + size;
+            },
+
+            //九  推荐视频、文档部分
+
+            //技能文档数视频数
+            getDocumentVideoNum: function (sid) {
+                return "/a/document/count/" + sid;
+            },
+            //登录获取职业文档
+            loginGetDocument: function (oid) {
+                return "/a/u/occupation/document/" + oid;
+            },
+            //不登录获取职业文档
+            noLoginGetDocument: function (oid) {
+                return "/a/occupation/document/" + oid;
+            },
+
+            //十  日报读取状态
+            sendDailyReadState: function (uid, did) {
+                return "/diaryreadset" + "?uid=" + uid + "&did=" + did;
+            },
+            getDailyReadState: function (uid, dids) {
+                return "/diaryread" + "?uid=" + uid + "&dids=" + dids;
+            },
+
+            //十一  任务详情内的接口
+            getTaskDaily: function (tid, page, size) {
+                return "/a/task/daily/" + tid + "?page=" + page + "&size=" + size;
+            },
+
+            //十二  获取所有日报
+            getAllDaily: function (page, size) {
+                if (!page) {
+                    page = 1
+                }
+                if (!size) {
+                    size = 10
+                }
+                return "/a/all/daily" + "?page=" + page + "&size=" + size;
+            },
+            //十三 寻找师兄
+            getTeacher: function (params) {
+                return '/a/user/list' + commonUtil.concactArrayParam("tid", params);
+            },
+            //获取视频列表
+            videoList: function () {
+                return '/a/user/video/list';
+            },
+            //十四 内容管理
+            //type:1banner   2公告 3联系我们QQ 4首页侧边栏 5线下报名 6线上报名 7优秀师兄 8常见问题 11获取站点资源
+            getContents: function () {
+                return "/a/contents/search?status=1";
+            },
+            getContentDetail: function (id) {
+                return "/a/contents/" + id;
+            },
+            //站点资源
+            getWebResource: function () {
+                return "/a/contents/search?type=11&size=10000&status=1";
+            },
+            //热门问题
+            getHotQuestion: function () {
+                return "/a/question/search";
+            },
+
+            //十二   系统消息
+            //获取系统消息列表
+            getAlertList: function (type) {
+                return "/a/u/receive/message/" + type + "/search" + "?now=" + new Date().getTime(); // prevent disk cache
+            },
+            //将用户收到的信息转送至服务器
+            sendUserMsg: function (mobile, content) {
+                return "/a/u/message/" + mobile + "?content=" + content;
+            },
+            //删除消息
+            deleteUserMsg: function (mid) {
+                return "/a/u/message/" + mid;
+            },
+            //消息已读
+            sendAlertMsg: function (mid) {
+                return "/a/u/read/message/" + mid
+            },
+            //群设置已读
+            sendAllReady: function () {
+                return "/a/u/read/message/all/"
+            },
+            listMsgReady: function (type) {
+                return "/a/u/read/message/type/" + type
+            },
+
+            //十三，云服务器发放
+            //获取我的账号
+            getAccount: function () {
+                return " /a/u/account"
+            },
+            //账号详情
+            accountDetails: function (id) {
+                return "/a/u/account/" + id
+            },
+            //我的订单
+            myOrder: function (page, size) {
+                return "/a/u/order?" + "page=" + page + "&size=" + size
+            },
+            //我的订单
+            orderDetails: function (id) {
+                return "/a/u/order/" + id
+            },
+            //提交订单
+            addOrder: function () {
+                return "/a/u/order"
+            },
+            //删除订单
+            delOrder: function (kid) {
+                return "/a/u/order/" + kid
+            },
+            //确认收获
+            confirm: function (id) {
+                return " /a/u/order/confirm/" + id
+            },
+            //获取订单详情
+            orderGoods: function (oid) {
+                return "/a/u/goods/order/" + oid
+            },
+            //购物车列表
+            getList: function (page, size) {
+                return "/a/u/goods?" + "page=" + page + "&size=" + size
+            },
+            //加入购物车
+            addList: function () {
+                return "/a/u/goods"
+            },
+            //获取几个商品
+            getListDetails: function (params) {
+                return "/a/multi/goods" + commonUtil.concactArrayParam("ids", params)
+            },
+            //删除购物车
+            delList: function (params) {
+                return "/a/u/goods" + commonUtil.concactArrayParam("ids", params)
+            },
+            //支付
+            submit: function (indentCode) {
+                return " /pay/aliPay" + "?indentCode=" + indentCode
+            },
+            /*私信部分*/
+            deleteMessageList: function (uid) {
+                return "/a/u/message/private/" + uid
+            },
+            sendPrivateMessage: function (uid) {
+                return "/a/u/message/private/" + "?uid=" + uid
+            },
+            getPrivateMsg: function (uid, page) {
+                return '/a/u/receive/message/private/search?pid=' + uid + "&page=" + page;
+            },
+            deleteMessageBymid: function (mid) {
+                return '/a/u/message/private/mid/' + mid;
+            },
+            readMessageList: function (uid) {
+                return 'a/u/read/message/private/' + uid
+            },
+            getUnReadMsgCount: function () {
+                return 'a/u/receive/message/unReadCount' + "?now=" + new Date().getTime(); // prevent disk cache
+            },
+            //十五、积分
+            //积分记录
+            getScoreList: function () {
+                return "/a/u/score/search";
+            },
+            //十六、优惠卡券
+            getMyCard: function () {
+                return "/a/u/card/search";
+            },
+            //卡券记录
+            getCardRecord: function () {
+                return "/a/u/clog/search";
+            },
+            getCardType: function () {
+                return "/a/u/cardType/search";
+            },
+            useCard: function (id) {
+                return "a/u/card/" + id + "/apply;"
+            },
+            cardTransfer: function (id) {
+                return "/a/u/card/" + id + "/cession";
+            },
+            getTransfer: function (mobile) {
+                return "/a/u/card/verify/" + mobile;
+            },
+            //十七、复盘项目
+            //获取常量
+            constantList: function () {
+                return '/a/constant/search'
+            },
+            //产品列表
+            productList: function () {
+                return '/a/product/search';
+            },
+            //产品详情
+            productDetail: function (id) {
+                return '/a/product/detail/' + id;
+            },
+            //组员列表
+            memberList: function (tid) {
+                return '/a/members/detail' + commonUtil.concactArrayParam('tid', tid)
+            },
+            // 组员详情
+            memberDetail: function (ids) {
+                return '/a/members/search' + commonUtil.concactArrayParam('uid', ids)
+            },
+            //项目主页
+            projectHome: function (id) {
+                return '/a/project/detail/' + id
+            },
+            //迭代列表
+            iterationList: function () {
+                return '/a/iteration/search'
+            },
+            //项目详情
+            getProjectDetail: function (id) {
+                return '/a/project/detail/' + id;
+            },
+            //批量获取项目
+            getProjects: function (tids) {
+                return '/a/project/detail' + commonUtil.concactArrayParam('tid', tids)
+            },
+            //十八、校园社区
+          //社区首页和立即加入页面banner图
+          getCommunityBanner: function () {
+            return "/a/contents/search?type=20&subType=4";
+          },
+          //校园详情页banner图
+          getCommunityDetailBanner: function () {
+            return "/a/contents/search?type=20&subType=2&status=1";
+          },
+            //合作校园列表
+          getSchool:function (size) {
+            return '/a/school?size='+size
+          },
+          //荣耀师兄
+          getUserList:function (nick){
+            return '/a/user/list?nick='+nick
+          },
+          //同校校友
+          getSchoolFriend:function (id){
+            return '/a/user/list?size=1000000&schoolId='+id
+          },
+          //校园详情
+          getSchoolDetail:function (id){
+            return '/a/school/' + id
+          },
+          //获取校园图片
+          getSchoolPic:function (id) {
+            return '/a/contents/search?type=20&size=3&status=1&subType=1&author='+id
+          },
+          //获取校园公告
+          getSchoolNotice:function () {
+            return '/a/contents/search?type=20&subType=3&status=1'
+          },
+          //获取校园公告详情
+          getSchoolNoticeDetail:function (id) {
+            return '/a/contents/'+id
+          },
+          //校园详情页的统计
+          getSchoolDetailshuju:function (id) {
+            return '/a/user/statistics?schoolId='+id
+          },
+          //校园社区首页字段
+          getSchoolStatistics:function () {
+            return '/a/school/statistics'
+          },
+          //分院名字
+          getBranchName:function () {
+            return '/a/branch/search/query'
+          },
+          //校园日报列表
+          getCommunityDailyList:function () {
+            return '/a/daily/search/query';
+          },
+          // 二十三期分院详情
+          // 获取分院信息
+          filialeInfoDetail:function () {
+              return '/a/branch/count'
+          },
+          // 获取全部分院信息
+          totalFilialeInfo:function () {
+              return '/a/branch/overall'
+          },
+          // 获取相册照片
+          photoAlbum:function () {
+              return '/a/contents/search'
+          }
+
+        }
+
+    }]);

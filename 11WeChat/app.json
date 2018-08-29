@@ -1,0 +1,41 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/joblist/index",
+    "pages/logs/logs",
+    "pages/tjlist/index"
+  ],
+  "window":{
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#598AD9",
+    "navigationBarTitleText": "修真院任务",
+    "navigationBarTextStyle":"#fff",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#fafafa"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#598AD9", 
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_select.png"
+      },
+      {
+        "pagePath": "pages/joblist/index",
+        "text": "列表",
+        "iconPath": "images/fenlei.png",
+        "selectedIconPath": "images/fenlei_select.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "日志",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_select.png"
+      }
+    ]
+  }
+}

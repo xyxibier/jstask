@@ -1,0 +1,17 @@
+<view class='container'>
+
+  <text class='center'>试试什么职业最适合你</text>
+
+  <van-cell-group>
+    <view wx:for="{{pickerArray}}" wx:for-item="item" wx:for-index="index" wx:key="">
+      <van-cell title="{{item.title}}" is-link>
+        <picker bindchange="{{item.bind}}" value="{{item.index}}" data-current="{{index}}" range="{{item.option}}" range-key="name" class='right'>
+          {{item.option[item.index].name}}
+        </picker>  
+      </van-cell>
+    </view>
+  </van-cell-group>
+
+  <button type='primary' class='margin' bindtap='goToListPage'>选好了，点击查看</button>
+
+</view>

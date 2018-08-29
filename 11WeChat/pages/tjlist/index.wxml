@@ -1,0 +1,29 @@
+<view class='container'>
+
+  <text class='center'>最适合你的职业推荐</text>  
+
+  <zan-tab list="{{mytab}}" selected-id='{{selectedId}}' bindtabchange='TabChange' />
+
+  <view class='content'>
+    <view wx:for="{{tjjobdetail}}" wx:for-index="index" wx:for-item="item" wx:key=''>
+      <view wx:if="{{selectedId == index}}">
+        <van-cell-group>
+          <van-cell title="职业门槛" value="{{tjjobdetail[selectedId].threshold}}星" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="难易程度" value="{{tjjobdetail[selectedId].difficult}}星" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="成长周期" value="{{tjjobdetail[selectedId].cycle}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="求贤企业" value="{{tjjobdetail[selectedId].company}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="入学基础" value="{{tjjobdetail[selectedId].basis}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="薪资待遇" value="{{tjmoney[selectedId]}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="职业简介" value="{{tjjobdetail[selectedId].description}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="{{tjdetail[selectedId][0].name}}" value="{{tjdetail[selectedId][0].content}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="{{tjdetail[selectedId][1].name}}" value="{{tjdetail[selectedId][1].content}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="{{tjdetail[selectedId][2].name}}" value="{{tjdetail[selectedId][2].content}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="{{tjdetail[selectedId][3].name}}" value="{{tjdetail[selectedId][3].content}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="{{tjdetail[selectedId][4].name}}" value="{{tjdetail[selectedId][4].content}}" value-class="myvalue" title-class='mytitle' />
+          <van-cell title="{{tjdetail[selectedId][5].name}}" value="{{tjdetail[selectedId][5].content}}" value-class="myvalue" title-class='mytitle' />
+        </van-cell-group>
+      </view>
+    </view>
+  </view>
+
+</view>

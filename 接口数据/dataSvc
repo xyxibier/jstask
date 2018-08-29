@@ -1,0 +1,1207 @@
+
+var mock = false;
+//mock为true，用假数据，否则用接口数据
+angular.module('skillApp')
+//一、登录注册模块service
+    .factory('loginService', ['$http', 'path', function ($http, path) {
+        return {
+            //测试用户名
+            mobile: function (params) {
+                return $http.get(path.mobile(params));
+            },
+            //注册
+            register: function (params) {
+                return $http.post(path.register, params);
+            },
+            //登录
+            login: function (params) {
+                return $http.post(path.login, params);
+            },
+            //获取图形验证码
+            getGenerate: function () {
+                return $http.get(path.getGenerate);
+            },
+            //图形验证码发送
+            verifyCaptcha: function (params) {
+                return $http.get(path.verifyCaptcha(params));
+            },
+            //验证码发送
+            postCode: function (params) {
+                return $http.post(path.postCode, params);
+            },
+            //语音验证码发送
+            postVoiceCode: function (params) {
+                return $http.post(path.postVoiceCode, params);
+            },
+            //忘记密码
+            forgetPwd: function (params) {
+                return $http.put(path.forgetPwd, params);
+            },
+            //注销
+            logout: function () {
+                return $http.post(path.logout);
+            }
+        }
+    }])
+    //二、用户
+    .factory('userService', ['$http', 'path', function ($http, path) {
+        return {
+            //本人信息读取
+            selfInfo: function (token) {
+                return $http.get(path.selfInfo(token));
+            },
+            //整体信息
+            getAllInfo: function () {
+                return $http.get(path.getAllInfo());
+            },
+            //用户信息读取-批量
+            getUserDetail: function (type, ids) {
+                return $http.get(path.getUserDetail(type, ids));
+            },
+            constantList:function (params) {
+                return $http.get(path.constantList(),{params:params})
+            },
+            //新建个人档案
+            addDossier:function (params) {
+                return $http.post(path.addDossier(),params)
+            },
+            //编辑个人档案
+            updateDossier:function (params) {
+                return $http.put(path.addDossier(),params)
+            },
+            //查看个人档案
+            getDossier:function () {
+                return $http.get(path.getDossier())
+            },
+            //请求省市区ID
+            getDossierPcaId:function (params) {
+                return $http.get(path.getDossierPcaId(),{
+                    params:params
+                })
+            },
+            //查看本人最新一条审核记录
+            getRecordLog:function (recordLogId) {
+                return $http.get(path.getRecordLog(recordLogId))
+            },
+            // 用户未读消息类型
+            // getMsgType: function (type) {
+            //     return $http.get(path.getMsgType1(type));
+            // },
+            //修改密码
+            changePwd: function (params) {
+                return $http.put(path.changePwd, params);
+            },
+            //修改个人信息
+            changeUserInfo: function (params) {
+                return $http.put(path.changeUserInfo, params);
+            },
+            //我的师弟
+            getStudentInfo: function (uid, type, size, page) {
+                return $http.get(path.getStudentInfo(uid, type, size, page));
+            },
+            //我的师兄
+            getTeacherInfo: function (uid) {
+                return $http.get(path.getTeacherInfo(uid));
+            },
+            //分配师兄
+            allocateTeacher: function (params) {
+                return $http.post(path.allocateTeacher(), params);
+            },
+
+            //用户任务进度
+            userProgress: function (uid) {
+                return $http.get(path.userProgress(uid));
+            },
+            //任务总进度
+            userTaskProgress: function (oid) {
+                return $http.get(path.userTaskProgress(oid));
+            },
+            //用户任务统计进度
+            userTaskTotalProgress: function (oid, uid) {
+                return $http.get(path.userTaskTotalProgress(oid, uid))
+            },
+
+            //用户任务进度
+            userSkill: function (uid, oid) {
+                return $http.get(path.userSkill(uid, oid));
+            },
+            //我的邀请
+            userInvitation: function (uid, params) {
+                return $http.get(path.userInvitation(uid), {params: params});
+            },
+            //请假记录
+            userLeaveRecord: function (params) {
+                return $http.get(path.userLeave(), {params: params});
+            },
+            //我的积分
+            userScoreRecord: function (uid) {
+                return $http.get(path.UserScoreRecord(uid));
+            }
+        }
+    }])
+    //三、班级
+    .factory('classService', ['$http', 'path', function ($http, path) {
+        return {
+            //获取班级详情
+            getClassInfo: function (cid) {
+                return $http.get(path.getClassInfo(cid));
+            },
+            getUser: function (uidArr) {
+                return $http.get(path.getUser(uidArr))
+            },
+            //获取班级列表
+            getClassList: function (params) {
+                return $http.get(path.getClassList(), {params: params});
+            },
+
+            //加入班级
+            joinClass: function (id, params) {
+                return $http.post(path.joinClass(id), params);
+            },
+            //退出班级
+            quitClass: function () {
+                return $http.put(path.quitClass());
+            }
+
+        }
+    }])
+    //四、日报
+    .factory('dailyService', ['$http', 'path', function ($http, path) {
+        return {
+            //获取同学日报
+            getClassmateDaily: function (uid, cid, page, size) {
+                return $http.get(path.getClassmateDaily(uid, cid, page, size));
+            },
+            //获取日报列表
+            getDailyList: function (params) {
+                return $http.get(path.getDailyList(), {params: params})
+            },
+            //获取用户点赞/收藏 日报
+            userDaily: function (type, params) {
+                return $http.get(path.userDaily(type), {params: params})
+            },
+            //日报信息
+            getDaily: function (did) {
+                return $http.get(path.getDaily(did));
+            },
+            //下面才是审核日报
+            //日报审核
+            judgeDaily: function (did, grateNum, params) {
+                return $http.put(path.judgeDaily(did, grateNum), params);
+            },
+            //日报评论
+            getDailyComment: function (did, uid, page, size, startAt, endAt) {
+                return $http.get(path.getDailyComment(did, uid, page, size, startAt, endAt));
+            },
+            // // 获取上一篇/下一篇日报
+            // getOtherDaily: function (did, direction, params) {
+            //     return $http.get(path.getOtherDaily(did, direction), {params: params});
+            // },
+            //获取班级图标以及信息
+            getMyClassInfo: function () {
+                return $http.get(path.getMyClassInfo());
+            },
+            //班级日报列表
+            getClassesDailyLists: function (cid, page, size) {
+                return $http.get(path.getClassesDailyLists(cid, page, size));
+            },
+            //删除日报
+            delDaily: function (did) {
+                return $http.delete(path.delDaily(did));
+            },
+            //新建日报
+            newDaily: function (cid, task, params) {
+                return $http.post(path.newDaily(cid, task), params);
+            },
+            //修改日报
+            changeDaily: function (did, params) {
+                return $http.put(path.changeDaily(did), params);
+            },
+            //评论日报
+            reviewDaily: function (did, params) {
+                return $http.post(path.reviewDaily(did), params);
+            },
+            //修改评论
+            updateDaily: function (commentId, params) {
+                return $http.put(path.updateOrDeleteDaily(commentId), params);
+            },
+            //删除评论
+            deleteDaily: function (commentId) {
+                return $http.delete(path.updateOrDeleteDaily(commentId));
+            },
+            //记录日报是否被读取（发送）
+            sendDailyReadState: function (uid, did) {
+                return $http.post(path.sendDailyReadState(uid, did));
+            },
+            //获取日报是否被读取(获取)
+            getDailyReadState: function (uid, dids) {
+                return $http.get(path.getDailyReadState(uid, dids));
+            },
+            //获取所有日报
+            getAllDaily: function (page, size) {
+                return $http.get(path.getAllDaily(page, size));
+            },
+        }
+    }])
+    //五、图片
+    .factory('imgService', ['$http', 'path', function ($http, path) {
+        return {
+            //上传图片
+            uploadImg: function (module, file) {
+                return $http.post(path.uploadImg(module), file, {
+                    withCredentials: true,
+                    headers: {'Content-Type': undefined},
+                    transformRequest: angular.identity
+                });
+            }
+        }
+    }])
+    //六、职业日报
+    .factory('occupationDailyService', ['$http', 'path', function ($http, path) {
+        return {
+
+            //日报信息读取
+            getDailyInfo: function (did, page, size) {
+                return $http.get(path.getDaily(did, page, size));
+            },
+            //职业日报列表
+            getOccupationDailyLists: function (oid, page, size) {
+                return $http.get(path.getOccupationDailyLists(oid, page, size));
+            },
+            //新建日报
+            newDaily: function (cid, task, params) {
+                return $http.post(path.newDaily(cid, task), params);
+            },
+            //修改日报
+            changeDaily: function (did, task, params) {
+                return $http.put(path.changeDaily(did, task), params);
+            },
+            //评论日报
+            reviewDaily: function (did, params) {
+                return $http.post(path.reviewDaily(did), params);
+            },
+            //修改评论
+            updateDaily: function (commentId, params) {
+                return $http.put(path.updateOrDeleteDaily(commentId), params);
+            },
+            //删除评论
+            deleteDaily: function (commentId) {
+                return $http.delete(path.updateOrDeleteDaily(commentId));
+            }
+        }
+    }])
+    //七、线下学习
+    .factory('offlineService', ['$http', 'path', function ($http, path) {
+        return {
+
+            //分院列表
+            getBranchList: function () {
+                return $http.get(path.getBranchList());
+            },
+            //分院详情
+            getBranchDetail: function (id) {
+                return $http.get(path.getBranchDetail(id));
+            },
+            //分院负责人
+            getPrincipal: function (id) {
+                return $http.get(path.getPrincipal(id));
+            },
+            //分院采风
+            getPhotos: function (params) {
+                return $http.get(path.getPhotos(),{params:params});
+            },
+            //真传辅导
+            getMaster: function (params) {
+                return $http.get(path.getMaster(),{params:params});
+            },
+            //分院学员信息
+            getUser: function (params) {
+                return $http.get(path.getUser(),{params:params});
+            },
+            //分院折线图数据
+            getLine: function (params) {
+                return $http.get(path.getLine(),{params:params});
+            },
+            // 咨询数据
+            getQuestionAndAnswer:function () {
+                return $http.get("scripts/controllers/offline/questionAndAnswer.json");
+            }
+        }
+    }])
+    //八、职业相关
+    .factory('positionService', ['$http', 'path', function ($http, path) {
+        return {
+
+            //职业列表
+            positionList: function () {
+                return $http.get(path.positionList());
+            },
+
+            getPositionName: function (oid) {
+                return $http.get(path.positionName(oid))
+            },
+            getPositionCount: function () {
+                return $http.get(path.getPositionCount())
+            },
+            //获取职业详情
+            getPositionDate: function (oid) {
+                return $http.get(path.getPositionDate(oid));
+            },
+            //获取职业图表数据
+            echartsGetData: function (oid, params) {
+                // if (!mock) {
+                // return $http.get(path.getPositionDate(oid),{params: params});
+                // } else {
+                return $http.get('scripts/Json/echarts/' + [oid] + '.json');
+                // }
+            },
+            //获取职业人数情况
+            getTheCount: function () {
+                return $http.get(path.getTheCount());
+            }
+
+        }
+    }])
+    //九、管理
+    .factory('managerService', ['$http', '$state', 'path', 'commonUtil', function ($http, $state, path, commonUtil) {
+        return {
+            //全局变量
+            //存储个人信息
+            saveSelfDetail: function (manager) {
+                localStorage["self"] = JSON.stringify(manager);
+            },
+            //增加个人信息
+            addSelfDetail: function (json) {
+                var oldJson = localStorage["self"];
+                if (oldJson == undefined) {
+                    localStorage["self"] = JSON.stringify(json);
+                } else {
+                    var newJson = angular.extend(JSON.parse(oldJson), json);
+                    localStorage["self"] = JSON.stringify(newJson);
+
+                }
+            },
+            //拼接个人信息
+            combineSelfDetail: function (result) {
+                var userInfo = result.data.data.users[0];
+                if (!userInfo) {
+                    return false
+                }
+                if (userInfo.cid > 0) {
+                    userInfo.class = result.data.data.classes[userInfo.cid];
+                }
+                if (userInfo.userClassID > 0) {
+                    userInfo.relation = result.data.data.relations[userInfo.userClassID];
+                }
+                if (userInfo.class && userInfo.class.oid > 0) {
+                    userInfo.occupation = result.data.data.occupations[userInfo.class.oid];
+                }
+                userInfo.userName = commonUtil.getUserName(userInfo, 1);
+                return userInfo;
+            },
+
+            combineSelfDetails: function (result) {
+                var userInfoLength = result.data.data.users.length;
+
+                for (var i = 0; i < userInfoLength; i++) {
+                    var userInfo = result.data.data.users[i];
+                    if (!userInfo) {
+                        return false
+                    }
+                    if (userInfo.cid > 0) {
+                        userInfo.class = result.data.data.classes[userInfo.cid];
+                    }
+                    if (userInfo.userClassID > 0) {
+                        userInfo.relation = result.data.data.relations[userInfo.userClassID];
+                    }
+                    if (userInfo.class && userInfo.class.oid > 0) {
+                        userInfo.occupation = result.data.data.occupations[userInfo.class.oid];
+                    }
+                    userInfo.userName = commonUtil.getUserName(userInfo, 1);
+
+                }
+                return result.data.data.users;
+
+            },
+
+            //获取个人信息
+            getSelfDetail: function () {
+                if (!localStorage["self"] || localStorage["self"] == 'undefined') {
+                    return undefined;
+                } else {
+                    return JSON.parse(localStorage["self"]);
+                }
+            },
+            //清除个人信息
+            clearSelfDetail: function () {
+                localStorage.removeItem("self");
+            },
+            //草稿
+            saveDaily: function (manager) {
+                localStorage["daily"] = JSON.stringify(manager);
+            },
+
+            getDaily: function () {
+
+                if (localStorage["daily"] == undefined) {
+                    return undefined;
+                } else {
+
+                    return JSON.parse(localStorage["daily"]);
+                }
+
+            },
+            clearDaily: function () {
+                localStorage.removeItem("daily");
+            }
+        }
+    }])
+    //十、资料部分
+    .factory('documentService', ['$http', 'path', function ($http, path) {
+        return {
+            //获取站点资源
+            getWebResource: function () {
+                return $http.get(path.getWebResource());
+            },
+
+            //获取用户收藏/推荐
+            getUserDocument: function (params) {
+                return $http.get(path.getUserDocument(), {params: params});
+            },
+            //删除用户收藏
+            deleteUserDocument: function (documentId) {
+                return $http.delete(path.deleteUserDocument(documentId));
+            },
+            //新增文档
+            addUserDocument: function (documentJson) {
+                return $http.post(path.addUserDocument(), documentJson);
+            },
+            //修改文档
+            changeUserDocument: function (documentId, documentJson) {
+                return $http.put(path.changeUserDocument(documentId), documentJson);
+            },
+            //文档点赞
+            likeDocument: function (documentId) {
+                return $http.post(path.likeDocument(documentId));
+            },
+            //文档取消点赞
+            cancelLikeDocument: function (documentId) {
+                return $http.delete(path.likeDocument(documentId));
+            },
+            //收藏文档
+            collectionDocument: function (documentId) {
+                return $http.post(path.collectionDocument(documentId));
+            },
+            //取消收藏
+            cancelCollectionDocument: function (documentId) {
+                return $http.delete(path.collectionDocument(documentId));
+            },
+            //点赞(目前仅用于日报)
+            love: function (type, id, action) {
+                return $http.post(path.love(type, id, action));
+            },
+            //收藏(目前仅用于日报)
+            collection: function (type, id, action) {
+                return $http.post(path.collection(type, id, action));
+            },
+            //获取技能文档(不登录)
+            getSkillDocument: function (sid, page, size) {
+                return $http.get(path.getSkillDocument(sid, page, size));
+            },
+            //获取技能视频(不登录)
+            getSkillVideo: function (sid, page, size) {
+                return $http.get(path.getSkillVideo(sid, page, size));
+            },
+            //获取技能文档(登录)
+            uGetSkillDocument: function (sid, page, size) {
+                return $http.get(path.uGetSkillDocument(sid, page, size));
+            },
+            //获取技能视频(登录)
+            uGetSkillVideo: function (sid, page, size) {
+                return $http.get(path.uGetSkillVideo(sid, page, size));
+            },
+            //task相关技能
+            getTaskSkill: function (taskId) {
+                return $http.get(path.getTaskSkill(taskId));
+            },
+            // 技能列表
+            getSkillList: function (oid) {
+                return $http.get(path.getSkillList(oid));
+            },
+            //查询技能详情
+            getSkillDetail: function (sid) {
+                return $http.get(path.getSkillDetail(sid));
+            },
+            //获取完成技能的用户列表
+            getSkillUser: function (sid, page, size) {
+                return $http.get(path.getSkillUser(sid, page, size));
+            },
+
+            //下面是推荐文档和推荐视频部分
+            //技能文档数视频数
+            getDocumentVideoNum: function (sid) {
+                return $http.get(path.getDocumentVideoNum(sid));
+            },
+            //登陆职业文档（需要登录）
+            loginGetDocument: function (oid, typeArr) {
+                return $http.get(path.loginGetDocument(oid), {params: typeArr});
+            },
+            //不登陆职业文档（不需要登录）
+            noLoginGetDocument: function (oid, typeArr) {
+                return $http.get(path.noLoginGetDocument(oid), {params: typeArr});
+            },
+            //获得职业任务所有技能列表
+            getOccupationSkillList: function (oid) {
+                return $http.get(path.getOccupationSkillList(oid));
+            },
+            //获取
+            getOccupationDocument: function (arr) {
+                return $http.get(path.getOccupationDocument(arr));
+            },
+            // //获取所有文档(登录)
+            // loginGetAllDocument: function (allDocumentArr) {
+            //     return $http.get(path.loginGetAllDocument(), {params: allDocumentArr})
+            // },
+            // //获取所有文档(不登录)
+            // noLoginGetAllDocument: function (allDocumentArr) {
+            //     return $http.get(path.noLoginGetAllDocument(), {params: allDocumentArr})
+            // },
+            // //获取书籍详情（未登录）
+            // nologinGetBookDetails: function (bid) {
+            //     return $http.get(path.nologinGetBookDetails(bid));
+            // },
+            // //获取书籍详情（登录）
+            // loginGetBookDetails: function (bid) {
+            //     return $http.get(path.loginGetBookDetails(bid));
+            // }
+            //资料搜索
+            informationSearch: function (sids, params) {
+                return $http.get(path.informationSearch(sids), {params: params})
+            }
+
+        }
+    }])
+    //十一、系统消息
+    .factory('alertService', ['$http', 'path', function ($http, path) {
+        return {
+            //获取消息列表
+            getAlertList: function (type, params) {
+                return $http.get(path.getAlertList(type), {params: params})
+            },
+            sendUserMsg: function (mobile, content) {
+                return $http.post(path.sendUserMsg(mobile, content))
+            },
+            deleteUserMsg: function (mid) {
+                return $http.delete(path.deleteUserMsg(mid))
+            },
+            //更改信息变成已读
+            sendAlertMsg: function (mid) {
+                return $http.put(path.sendAlertMsg(mid));
+            },
+            //将所有变成已读
+            sendAllReady: function () {
+                return $http.put(path.sendAllReady());
+            },
+            //将所有变成已读
+            listMsgReady: function (type) {
+                return $http.put(path.listMsgReady(type));
+            },
+
+        }
+
+    }])
+    //十二、im方法
+    .factory('imService', ['$http', '$rootScope', 'path', '$timeout', 'alertService', 'userService',
+        function ($http, $rootScope, path, $timeout, alertService, userService) {
+            return {
+
+                ////批量注册方法
+                //userRegister: function(token,userArr){
+                //    return $http.post(path.userRegister(token),userArr)
+                //},
+
+
+                imFunction: function (mobile, uid) {
+                    //环信方法
+                    /*下面是登录方法*/
+                    $(function () {
+                        var conn = null;
+                        conn = new Easemob.im.Connection();
+                        /*登录方法*/
+                        $timeout(function () {
+                                conn.open({
+                                    user: mobile,
+                                    pwd: 'ptteng',
+                                    appKey: 'jnshu4#jnshu4'
+                                });
+                            }, 100
+                        );
+                        /*登录方法结束*/
+                        conn.init({
+                            /*登录回调*/
+                            onOpened: function () {
+                                console.log('成功登录环信');
+                                conn.setPresence();
+                            },
+                            //收到文本消息时的回调方法
+                            onTextMessage: function (message) {
+                                userService.getUserDetail("base", [uid]).then(function (res) {
+                                    if (res.data.code == 0) {
+                                        //获取未读消息数量
+                                        $rootScope.messagesNumber = res.data.data.users[0].isLook;
+                                        $rootScope.latestMsg = res.data.data.users[0].latestMsg;
+                                    }
+                                    else {
+                                        $rootScope.alert(res.data.message);
+                                    }
+                                });
+                                //}
+                                var from = message.from;//消息的发送者
+                                var mestype = message.type;//消息发送的类型是群组消息还是个人消息
+                                var messageContent = message.data;//文本消息体
+                                if (mestype == 'groupchat') {
+                                    //进行群组消息页面处理
+                                }
+                                else {
+
+                                    //进行个人消息页面处理
+                                    $timeout(
+                                        function () {
+                                            $rootScope.newMsgAlert = true;
+                                        }, 100
+                                    )
+                                    //新消息title闪的方法
+                                    // 使用message对象封装消息
+                                    var message = {
+                                        time: 0,
+                                        title: document.title,
+                                        timer: null,
+                                        // 显示新消息提示执行方法
+                                        show: function () {
+                                            var title = message.title;
+                                            // 定时器，设置消息切换频率闪烁效果就此产生
+                                            message.timer = setTimeout(function () {
+                                                message.time++;
+                                                message.show();
+                                                if (message.time % 2 == 0) {
+                                                    document.title = "【新消息】" + title
+                                                } else {
+                                                    document.title = "【　　　】" + title
+                                                }
+                                            }, 600);
+                                            return [message.timer, message.title];
+                                        },
+                                        // 取消新消息提示方法
+                                        clear: function () {
+                                            clearTimeout(message.timer);
+                                            document.title = message.title;
+                                        },
+
+                                    };
+                                    //获取当前消息数量
+                                    // var qqqqq = commonUtil.currentMessageCount();
+                                    message.show();
+                                    $timeout(function () {
+                                        message.clear();
+
+                                    }, 15000);
+
+                                    $rootScope.stopAlertTitile = function () {
+                                        message.clear();
+                                    }
+
+
+                                }
+                            }
+                        });
+                        /*登录回调*/
+                        /*发送信息*/
+                        var sendText = function () {
+                            var msg = $('textarea').val();
+                            var to = $("#sendto").val();
+                            //var msg = "123123123";
+                            //var to = "18826416317";
+                            var options = {
+                                to: to,
+                                msg: msg,
+                                type: "chat"
+                            };
+                            conn.sendTextMessage(options);
+                        };
+
+                        /*发送信息*/
+                        $("#send").on('click', function () {
+                            sendText();
+                        });
+                        //$rootScope.sendMessage = function(){
+                        //    sendText();
+                        //}
+
+                        /*收到信息*/
+
+
+                        /*收到信息*/
+
+                    });
+                    //环信结束
+                }
+            }
+        }
+    ])
+    //十三、任务
+    .factory('taskService', ['$http', 'path', function ($http, path) {
+        return {
+            //获取任务相关日报
+            getTaskDaily: function (tid, page, size) {
+                return $http.get(path.getTaskDaily(tid, page, size));
+            },
+            //获取任务详情
+            getTaskDetail: function (id) {
+                // if (!mock) {
+                return $http.get(path.getTaskDetail(id));
+                // } else {
+                // return $http.get("scripts/Json/");
+                // }
+            },
+            //获取各职业师兄、QQ群、问题日报链接等信息
+            getMockOccupation: function () {
+                return $http.get("scripts/Json/occupation.json");
+            },
+            //热门问题
+            getHotQuestion: function (oid, tid) {
+                return $http.get(path.getHotQuestion() + '?' + $.param({
+                    oid: oid,
+                    tid: tid,
+                    adopt: 1,//默认已收录
+                }));
+            },
+            //获取任务列表
+            getTaskList: function (oid, id, page, size) {
+                return $http.get(path.getTaskList(oid, id, page, size));
+            },
+            // //领取任务
+            // claimTask: function (tid) {
+            //     return $http.post(path.claimTask(tid));
+            // },
+            // //任务提审
+            // applyTask: function (tid, params) {
+            //     return $http.put(path.applyTask(tid), params);
+            // },
+            // //任务审核
+            // judgeTask: function (userTaskRelationId, params) {
+            //     return $http.put(path.judgeTask(userTaskRelationId), params);
+            // },
+            //任务接受、提交、审核
+            taskReceiveAndSubmitAndReview: function (tid, type, params) {
+                return $http.post(path.taskReceiveAndSubmitAndReview(tid, type), params);
+            },
+            //用户任务进度
+            taskProgress: function (uid) {
+                return $http.get(path.taskProgress(uid));
+            },
+            //任务审核列表
+            getjudgeListInfo: function (type, page, size) {
+                return $http.get(path.getjudgeListInfo(type, page, size));
+            },
+            //任务审核详情
+            judgeDetail: function (userTaskRelationId) {
+                return $http.get(path.judgeDetail(userTaskRelationId));
+            },
+            //任务审核
+            judgeTask: function (userTaskRelationId, params) {
+                return $http.put(path.judgeTask(userTaskRelationId), params);
+            },
+            //审核失败原因
+            failReason: function (tid) {
+                return $http.get(path.failReason(tid));
+            },
+            //String time is converted to digital time
+            stringTransform1: function (item) {
+                if (item !== '' || item !== undefined) {
+                    item = parseInt(item.replace(/^([0-9]*)-([0-9]*)[^0-9]*$/g,
+                        function (match, n1, n2) {
+                            return [n1]
+                        }));
+                }
+                return item;
+            },
+            stringTransform2: function (item) {
+                if (item !== '' || item !== undefined) {
+                    item = parseInt(item.replace(/^([0-9]*)-([0-9]*)[^0-9]*$/g,
+                        function (match, n1, n2) {
+                            return [n2]
+                        }));
+                }
+                return item;
+            }
+        }
+    }])
+    //十四 内容管理
+    .factory('contentService', ['$http', 'path', function ($http, path) {
+        return {
+            //type:1banner 2公告 3联系我们QQ 4首页侧边栏 5线下报名 6线上报名 7优秀师兄 8常见问题 9视频
+            //获取内容列表
+            getContentsList: function (params) {
+                return $http.get(path.getContents(), {params: params});
+            },
+            //获取内容详情
+            getContentDetail: function (id, params) {
+                return $http.get(path.getContentDetail(id), {params: params});
+            }
+        }
+    }])
+    //十五、我的账号
+    .factory('myAccountService', ['$http', 'path', function ($http, path) {
+        return {
+            //获取我的账号
+            getAccount: function () {
+                return $http.get(path.getAccount());
+            },
+            accountDetails: function (id) {
+                return $http.get(path.accountDetails(id));
+            },
+            //购物车列表
+            getList: function (page, size) {
+                return $http.get(path.getList(page, size));
+            },
+            //加入购物车
+            addList: function (params) {
+                return $http.post(path.addList(), params);
+            },
+            getListDetails: function (params) {
+                return $http.get(path.getListDetails(params));
+            },
+            delList: function (params) {
+                return $http.delete(path.delList(params));
+            },
+            myOrder: function (page, size) {
+                return $http.get(path.myOrder(page, size));
+            },
+            orderDetails: function (id) {
+                return $http.get(path.orderDetails(id));
+            },
+            //提交订单
+            addOrder: function (params) {
+                return $http({
+                    url: path.addOrder(),
+                    method: "POST",
+                    headers: {'Content-Type': 'application/json'},
+                    data: JSON.stringify(params),
+                    transformRequest: function (data, headersGetter) {
+                        return data;
+                    }
+
+                });
+            },
+            delOrder: function (kid) {
+                return $http.delete(path.delOrder(kid));
+            },
+            confirm: function (id, status) {
+                return $http.put(path.confirm(id), status)
+            },
+            orderGoods: function (oid) {
+                return $http.get(path.orderGoods(oid));
+            },
+            submit: function (indentCode) {
+                return $http.get(path.submit(indentCode))
+            }
+        }
+    }])
+    //十六、全选
+    .factory('checkboxArray', function () {
+        return {
+            checked: checked,
+            checkAllOrNot: checkAllOrNot,
+            removeChecked: removeChecked
+        };
+
+        function checked(list) {
+            var result = [];
+            angular.forEach(list, function (item) {
+                if (item.$checked) {
+                    result.push(item);
+                }
+            });
+            return result;
+        }
+
+        function checkAllOrNot(list, bool) {
+            angular.forEach(list, function (item) {
+                item.$checked = bool;
+            });
+            return list;
+        }
+
+        function removeChecked(list) {
+            var result = [];
+            angular.forEach(list, function (item) {
+                if (!item.$checked) {
+                    result.push(item);
+                }
+            });
+            return result;
+        }
+    })
+
+    //十七、其他constant and filter
+    .factory('constantService', ['$http', 'path', function ($http, path) {
+        return {
+            studyNum: function (num) {
+                num = parseInt(num);
+                if (num < 10) {
+                    num = "0" + num;
+                }
+                return num;
+            },
+            //默认头像
+            defaultThumb: "http://jns.img.bucket.ks3-cn-beijing.ksyun.com/skill/thumb/9150f237-c25b-4bd8-916b-a2934bfa41d3.png",
+            // 错误默认头像
+            errorThumb: "http://jns.img.bucket.ks3-cn-beijing.ksyun.com/skill/skill_html/images/dossier/noImg.png",
+
+        }
+    }])
+    //十八、echarts
+    .factory('echartsService', ['$http', 'path', function ($http, path) {
+        return {
+            //获取图标数据
+            echartsGetData: function () {
+                if (!mock) {
+                    return $http.get(path.echartsGetData());
+                } else {
+                    return $http.get("scripts/Json/");
+                }
+            }
+        }
+
+    }])
+    //线下师兄视频集
+    .factory('oTeacherService', ['$http', 'path', function ($http, path) {
+        return {
+            //获取视频列表
+            videoList: function (params) {
+                return $http.get(path.videoList(), {params: params});
+            },
+
+            //查找师兄
+            oTeacherSearch: function (params) {
+                return $http.get(path.getTeacher(), {params: params})
+            }
+
+
+        }
+    }])
+
+    //二十、线上学习-前言
+    .factory('prefaceService', ['$http', 'path', function ($http, path) {
+        return {
+            getPreface: function () {
+                return $http.get("scripts/Json/preface.json");
+
+            },
+            getGuest: function () {
+                return $http.get("scripts/Json/preface.json");
+            }
+
+        }
+    }])
+    //客卿留言
+    .factory('guestService', ['$http', 'path', function ($http, path) {
+        return {
+            getGuestData: function () {
+                return $http.get("scripts/Json/guset.json?now=" + new Date().getTime())
+
+            },
+            // getGuestData: function (id) {
+            //     return $http.get(path.getGuestData(id));
+            // },
+        }
+    }])
+    //首页业内评价
+    .factory('evaluateService', ['$http', 'path', function ($http, path) {
+        return {
+            getEvaluate: function () {
+                return $http.get("scripts/Json/evaluate.json");
+            }
+        }
+    }])
+    //用户积分记录
+    .factory('scoreService', ['$http', 'path', function ($http, path) {
+        return {
+            getScoreList: function (params) {
+                return $http.get(path.getScoreList(), {params: params})
+            }
+        }
+    }])
+    .factory('privateMessageService', ['$http', 'path', function ($http, path) {
+        return {
+            //删除信息列表
+            deleteMessageList: function (uid) {
+                return $http.delete(path.deleteMessageList(uid));
+            },
+            sendPrivateMessage: function (uid, params) {
+                return $http.post(path.sendPrivateMessage(uid), params)
+            },
+
+            getPrivateMsg: function (uid, page) {
+                return $http.get(path.getPrivateMsg(uid, page))
+            },
+            deleteMessageBymid: function (mid) {
+                return $http.delete(path.deleteMessageBymid(mid))
+            },
+            readMessageList: function (uid) {
+                return $http.put(path.readMessageList(uid))
+            },
+            getUnReadMsgCount: function () {
+                return $http.get(path.getUnReadMsgCount())
+            }
+
+        }
+    }])
+    //优惠卡券
+    .factory('myCard', ['$http', 'path', function ($http, path) {
+        return {
+            //我的卡券
+            getMyCard: function (params) {
+                return $http.get(path.getMyCard(), {params: params});
+            },
+            getCardRecord: function (params) {
+                return $http.get(path.getCardRecord(), {params: params});
+            },
+            getCardType: function () {
+                return $http.get(path.getCardType());
+            },
+            useCard: function (id, params) {
+                return $http.put(path.useCard(id), params);
+            },
+            getTransfer: function (mobile) {
+                return $http.get(path.getTransfer(mobile));
+            },
+            cardTransfer: function (id, params) {
+                return $http.put(path.cardTransfer(id), params);
+            }
+        }
+    }])
+    .factory('tokenService', function () {
+        return {
+            getToken: function () {
+                return localStorage.token;
+            },
+            deleteToken: function () {
+                return localStorage.removeItem("token");
+            }
+        }
+    })
+    //复盘项目
+    .factory('replayService', ['$http', 'path', function ($http, path) {
+        return {
+            //获取常量
+
+            //产品列表
+            productList: function (params) {
+                return $http.get(path.productList(), {params: params});
+            },
+            //产品详情
+            productDetail: function (id) {
+                return $http.get(path.productDetail(id));
+            },
+            //获取常量
+            constantList: function (params) {
+                return $http.get(path.constantList(), {params: params})
+            },
+            //获取组员列表
+            memberList: function (tid) {
+                return $http.get(path.memberList(tid))
+            },
+            //查询组员信息
+            memberDetail: function (ids) {
+                return $http.get(path.memberDetail(ids))
+            },
+            //迭代列表
+            iterationList: function (params) {
+                return $http.get(path.iterationList(), {params: params})
+            },
+            //项目详情id搜索
+            getProjectDetail: function (id) {
+                return $http.get(path.getProjectDetail(id))
+            },
+            //批量获取项目
+            getProjects: function (tids) {
+                return $http.get(path.getProjects(tids))
+            }
+        }
+    }])
+    .factory('filialeInfoService',['$http','path',function ($http,path) {
+        return {
+            // 获取分院信息
+            getfilialeInfoDetail:function () {
+                return $http.get(path.filialeInfoDetail());
+            },
+            // 获取全部分院信息
+            getTotalFilialeInfo:function (params) {
+                return $http.get(path.totalFilialeInfo(),{params:params});
+            },
+            // 获取相册照片
+            getPhotoAlbum:function (params) {
+                return $http.get(path.photoAlbum(),{params:params});
+            }
+        }
+
+    }])
+//校园社区
+  .factory('communityService',['$http','path',function($http,path){
+        return{
+            //校园社区首页字段
+          getSchoolStatistics:function (params) {
+            return $http.get(path.getSchoolStatistics(),{params: params});
+          },
+          //同校校友/优秀结业师兄接口
+          getUserList:function (nick){
+            return $http.get(path.getUserList(nick));
+          },
+          //社区首页和立即加入页面banner图
+          getCommunityBanner:function () {
+            return $http.get(path.getCommunityBanner());
+          },
+          //校园详情页banner图
+          getCommunityDetailBanner: function () {
+            return $http.get(path.getCommunityDetailBanner());
+          },
+          //获取校园图片/banner/公告详情
+          getSchoolPic:function (id) {
+            return $http.get(path.getSchoolPic(id));
+          },
+          //校园日报列表
+          getCommunityDailyList:function (params) {
+            return $http.get(path.getCommunityDailyList(), {params: params});
+          },
+          //合作校园列表
+          getSchool:function (size) {
+            return $http.get(path.getSchool(size));
+          },
+          //校园详情页的统计
+          getSchoolDetailshuju:function (id) {
+            return $http.get(path.getSchoolDetailshuju(id));
+          },
+          //获取校园公告
+          getSchoolNotice:function (params) {
+            return $http.get(path.getSchoolNotice(), {params: params});
+          },
+          //获取校园公告详情
+          getSchoolNoticeDetail:function (id) {
+            return $http.get(path.getSchoolNoticeDetail(id));
+          },
+          //分院名字
+          getBranchName:function (id) {
+            return $http.get(path.getBranchName(id));
+          },
+          //同校校友
+          getSchoolFriend:function (id){
+            return $http.get(path.getSchoolFriend(id));
+          },
+          //校园详情
+          getSchoolDetail:function (id) {
+            return $http.get(path.getSchoolDetail(id));
+          }
+        }
+    }])
+;

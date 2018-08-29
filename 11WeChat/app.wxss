@@ -1,0 +1,6 @@
+/*框架*/
+.container{padding: 20rpx;font-size: 28rpx;color: #333;}
+
+/*内页*/
+.center{text-align: center;display: block;height: 80rpx;line-height: 80rpx;font-weight: bold;font-size: 28rpx;}
+.margin{margin-top: 40rpx;}
