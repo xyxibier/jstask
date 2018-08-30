@@ -8,7 +8,7 @@
   "window":{
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#598AD9",
-    "navigationBarTitleText": "修真院任务",
+    "navigationBarTitleText": "职业推荐",
     "navigationBarTextStyle":"#fff",
     "enablePullDownRefresh": true,
     "backgroundColor": "#fafafa"
